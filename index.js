@@ -1,7 +1,7 @@
 // importing express framework - which is used to build web apps and API's 
 const express = require('express')
 // importing database connection from config folder/connection js file
-const db = require('./config/connection');
+const db = require('./config/connections');
 const routes = require('./routes');
 // setting port for server to listen on
 const PORT = process.env.PORT || 3001;

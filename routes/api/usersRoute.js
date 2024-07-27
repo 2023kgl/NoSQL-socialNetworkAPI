@@ -9,7 +9,7 @@ const {
   deleteUserById,
   addFriend,
   removeFriend,
-} = require('../../controllers/user-controller');
+} = require('../../controllers/userController');
 
 
 // C R U D routes that call the functions 

@@ -9,7 +9,7 @@ const {
     updateThoughtById,
     createReaction,
     deleteReaction,
-} = require('../../controllers/thought-controller');
+} = require('../../controllers/thoughtController');
 
 // C R U D routes that call the functions 
 

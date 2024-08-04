@@ -42,7 +42,7 @@ const ThoughtController = {
   async deleteThought(req,res) {
     try {
         const thought = await Thought.findByIdAndDelete({_id:req.params.thoughtId});
-        res.status(200).json(thought);
+        res.status(200).json({ message : 'Thought deleted' });
     } catch (err) {
         res.status(500).json(err);
     }
@@ -55,7 +55,7 @@ const ThoughtController = {
       const thought = await Thought.findByIdAndUpdate(req.params.thoughtId, req.body, {
         new: true,
       });
-        res.status(404).json(thought);
+        res.status(200).json(thought);
     } catch (err) {
       res.status(500).json(err);
     }
@@ -65,13 +65,14 @@ const ThoughtController = {
   async createReaction(req, res) {
       try {
         const thought = await Thought.findOneAndUpdate(
-            { _id : req.params.thoughtId },
+          { _id : req.params.thoughtId },
           // adds reaction
-            { $addToSet : {reactions: req.body} },
+          { $addToSet : {reactions: req.body} },
           // validates schema and new:true returns the updated doc
-            { runValidators : true, new: true }
+          { runValidators : true, new: true }
         );
-        res.status(404).json(thought) 
+        console.log(thought)
+        res.status(200).json(thought) 
     } catch (err) {
         res.status(500).json(err);
     }
@@ -87,7 +88,7 @@ const ThoughtController = {
           // validates schema and new:true returns updated doc
             { runValidators: true, new: true }
         );
-        res.status(404).json(thought)
+        res.status(200).json(thought)
     } catch (err) {
         res.status(500).json(err);
     }

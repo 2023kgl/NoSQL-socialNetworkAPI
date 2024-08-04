@@ -37,12 +37,14 @@ const UserController = {
   // find and update user id 
   async updateUserById(req, res) {
     try {
-      const userData = await User.findOneAndUpdate(req.params.id, req.body, { new: true });
+      const userData = await User.findOneAndUpdate({_id:req.params.userId}, req.body, { new: true });
+console.log(userData);
       if (!userData) {
         return res.status(404).json({ message: 'User not found' });
       }
       res.json(userData);
     } catch (err) {
+      console.log(err);
       res.status(500).json(err);
     }
   },
@@ -50,7 +52,8 @@ const UserController = {
   // find and delete user by id 
   async deleteUserById(req, res) {
     try {
-      const userData = await User.findOneAndDelete(req.params.id);
+      const userData = await User.findOneAndDelete({_id: req.params.userId});
+      console.log(userData)
       if (!userData) {
         return res.status(404).json({ message: 'User not found' });
       }
